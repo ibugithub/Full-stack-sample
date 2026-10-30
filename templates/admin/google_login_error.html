@@ -1,0 +1,12 @@
+{% extends "admin/login.html" %}
+
+{% block content %}
+<div id="content-main">
+    <header class="app-login__intro">
+        <span class="app-login__eyebrow">Staff sign-in</span>
+        <h2>Google sign-in</h2>
+    </header>
+    <p class="errornote" role="alert">{{ detail }}</p>
+    <a class="app-login-google" href="{% url 'admin:login' %}">Back to admin login</a>
+</div>
+{% endblock %}

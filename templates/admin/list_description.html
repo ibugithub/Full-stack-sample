@@ -1,0 +1,4 @@
+{% if cl.opts.model_name == 'user' %}Manage accounts, sign-in details and access.
+{% elif cl.opts.model_name == 'profile' %}Manage profile details and photos.
+{% elif cl.opts.model_name == 'group' %}Organize staff roles and their permissions.
+{% else %}View and update your {{ cl.opts.verbose_name_plural|lower }}.{% endif %}

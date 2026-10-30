@@ -1,0 +1,17 @@
+<div class="app-permissions app-members" data-permission-picker>
+  <div class="app-permissions__toolbar">
+    <input type="search" id="{{ widget.attrs.id }}" placeholder="Search names or email addresses..." aria-label="Search members" data-permission-search>
+    <button type="button" class="app-permissions__filter" data-picker-selected aria-pressed="false">Selected only</button>
+    <span data-permission-count aria-live="polite"></span>
+  </div>
+  <div class="app-permissions__list app-members__list">
+    {% for group, options, index in widget.optgroups %}{% for option in options %}
+    <label class="app-members__member" data-permission-feature>
+      <input type="checkbox" name="{{ widget.name }}" value="{{ option.value }}"{% if option.selected %} checked{% endif %}{% if widget.attrs.disabled %} disabled{% endif %}>
+      <span><strong>{{ option.value.instance.name|default:option.label }}</strong><small>{{ option.label }}</small></span>
+      <span class="app-members__type">{% if option.value.instance.is_staff %}Staff{% else %}Member{% endif %}</span>
+    </label>
+    {% endfor %}{% endfor %}
+    <p class="app-permissions__empty" data-permission-empty hidden>No matching members.</p>
+  </div>
+</div>

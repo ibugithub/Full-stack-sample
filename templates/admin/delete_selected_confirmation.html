@@ -1,0 +1,18 @@
+{% extends "admin/delete_selected_confirmation.html" %}
+{% load static %}
+
+{% block responsive %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/admin_delete.css' %}?v=20261020-1">
+{% include 'admin/includes/record_assets.html' %}
+{% endblock %}
+{% block bodyclass %}{{ block.super }} app-admin-delete app-record-page{% endblock %}
+{% block header %}{% include 'admin/includes/workspace_header.html' %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block content_subtitle %}{% endblock %}
+{% block content_title %}
+{% include "admin/includes/delete_heading.html" with bulk=True %}
+{% endblock %}
+{% block content %}
+{% include "admin/includes/delete_panel.html" with bulk=True %}
+{% endblock %}

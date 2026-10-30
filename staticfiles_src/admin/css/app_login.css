@@ -1,0 +1,69 @@
+/* Template operations gateway. Authentication remains owned by Django. */
+.app-login #content .app-login-google { display: flex; align-items: center; justify-content: center; gap: 12px; box-sizing: border-box; min-height: 48px; width: 100%; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; color: #182230; font-size: 14px; font-weight: 650; text-decoration: none; }
+.app-login #content .app-login-google:hover { background: #eff6ff; border-color: #005bea; }
+.app-login-google span { color: #005bea; font-size: 20px; font-weight: 750; }
+.app-login-google:focus-visible { outline: 2px solid #005bea; outline-offset: 3px; }
+.app-login-divider { margin: 18px 0; color: #637087; font-size: 12px; text-align: center; }
+.app-login { box-sizing: border-box; min-height: 100vh; min-height: 100dvh; margin: 0; padding: 0; background: #07182d; }
+.app-login #container { display: flex; flex-direction: column; width: 100%; max-width: none; min-width: 0; min-height: 100vh; min-height: 100dvh; height: auto; margin: 0; overflow: hidden; border: 0; border-radius: 0; background: #f8fafc; box-shadow: none; }
+.app-login #header.app-login-hero { position: relative; display: flex; flex-direction: column; box-sizing: border-box; min-height: 292px; padding: 22px 20px 54px; overflow: hidden; border: 0; background: linear-gradient(145deg, rgb(0 91 234 / 15%), transparent 48%), #07182d; color: #fff; }
+.app-login-hero::after { content: ''; position: absolute; right: -62px; bottom: -82px; width: 210px; height: 210px; border: 1px solid rgb(255 255 255 / 8%); border-radius: 50%; box-shadow: 0 0 0 38px rgb(255 255 255 / 2%), 0 0 0 76px rgb(255 255 255 / 2%); }
+.app-login-hero__top { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.app-login-brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; }
+.app-login-brand:hover { color: #fff; }
+.app-login-brand__mark { display: grid; place-items: center; width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: var(--accent); color: var(--primary); font-size: 15px; font-weight: 850; }
+.app-login-brand > span:last-child { display: grid; gap: 2px; }
+.app-login-brand strong { font-size: 17px; line-height: 1; }
+.app-login-brand small { color: rgb(255 255 255 / 58%); font-size: 8px; letter-spacing: .16em; text-transform: uppercase; }
+.app-login-hero__portal { padding: 6px 9px; border: 1px solid rgb(255 255 255 / 16%); border-radius: 100px; color: rgb(255 255 255 / 68%); font-size: 9px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+.app-login-hero__copy { position: relative; z-index: 2; margin-top: 46px; }
+.app-login-hero__index { display: block; margin-bottom: 9px; color: #8eb9ff; font-size: 9px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.app-login #header .app-login-hero__copy h1 { margin: 0; color: #fff; font-size: clamp(30px, 9vw, 42px); font-weight: 680; line-height: 1.04; letter-spacing: -.045em; }
+.app-login-hero__copy h1 em { color: var(--accent); font-style: normal; }
+.app-login-hero__copy p { max-width: 290px; margin: 13px 0 0; color: rgb(255 255 255 / 62%); font-size: 12px; line-height: 1.6; }
+.app-login-hero__services { display: none; }
+.app-login .main { position: relative; z-index: 3; display: block; align-self: stretch; flex: 1; width: 100%; margin-top: -27px; border-radius: 28px 28px 0 0; background: #f8fafc; }
+.app-login #content { box-sizing: border-box; width: 100%; max-width: 470px; margin: 0 auto; padding: 34px 22px 24px; }
+.app-login__intro { margin-bottom: 26px; }
+.app-login__eyebrow { display: block; margin-bottom: 8px; color: var(--primary); font-size: 10px; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+.app-login #content .app-login__intro h2 { margin: 0 0 7px; color: var(--body-fg); font-size: 27px; line-height: 1.15; letter-spacing: -.035em; }
+.app-login__intro p { margin: 0; color: var(--body-quiet-color); font-size: 13px; }
+.app-login #login-form .form-row { padding: 0; margin: 0 0 19px; }
+.app-login #login-form .form-row label { display: block; margin: 0 0 7px; color: var(--body-medium-color); font-size: 12px; font-weight: 700; line-height: 1.4; }
+.app-login #login-form .form-row input:not([type='hidden']) { box-sizing: border-box; width: 100%; min-height: 52px; margin: 0; padding: 13px 15px; border: 0; border-bottom: 2px solid #d8e0eb; border-radius: 9px 9px 3px 3px; background: #eef2f7; color: var(--body-fg); font-size: 16px; transition: border-color 150ms ease, background 150ms ease; }
+.app-login #login-form .form-row input:not([type='hidden']):focus { border-bottom-color: var(--primary); outline: 0; background: #fff; box-shadow: 0 0 0 1px #d7e5ff; }
+.app-login .errornote, .app-login .errorlist { border-radius: 8px; font-size: 12px; line-height: 1.5; }
+.app-login .errornote { margin: 0 0 18px; padding: 12px 14px; }
+.app-login .errorlist { margin: 0 0 7px; padding: 0; list-style: none; }
+.app-login .password-reset-link { margin: -6px 0 19px; text-align: right; font-size: 12px; }
+.app-login .submit-row { position: relative; margin: 5px 0 0; padding: 0; overflow: hidden; border: 0; border-radius: 9px; background: var(--accent); }
+.app-login .submit-row input[type='submit'] { width: 100%; min-height: 54px; margin: 0; padding: 13px 52px 13px 18px; border: 0; border-radius: 0; background: transparent; color: #07182d; font-size: 13px; font-weight: 800; letter-spacing: .02em; text-align: left; text-transform: none; cursor: pointer; }
+.app-login .submit-row > span { position: absolute; top: 50%; right: 9px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 7px; background: #07182d; color: #fff; font-size: 17px; pointer-events: none; transform: translateY(-50%); }
+.app-login .submit-row:hover { background: var(--default-button-hover-bg); }
+.app-login__note { display: flex; align-items: center; justify-content: center; gap: 7px; margin: 22px 0 0; color: var(--body-quiet-color); font-size: 10px; letter-spacing: .03em; }
+.app-login__note svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.app-logout__content { align-self: center; }
+.app-logout__status { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 24px; border-radius: 50%; background: #e7f7ef; color: #138a55; }
+.app-logout__status svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.app-login #content .app-logout__content h2 { margin: 0; color: var(--body-fg); font-size: 34px; line-height: 1.05; letter-spacing: -.045em; }
+.app-logout__content > p { max-width: 390px; margin: 17px 0 0; color: var(--body-quiet-color); font-size: 13px; line-height: 1.75; }
+.app-logout__closed { display: flex; align-items: center; gap: 8px; margin: 24px 0; color: var(--body-medium-color); font-size: 11px; font-weight: 650; letter-spacing: .04em; text-transform: uppercase; }
+.app-logout__closed span { width: 7px; height: 7px; border-radius: 50%; background: #24a168; box-shadow: 0 0 0 4px #e7f7ef; }
+.app-login__action { display: flex; align-items: center; justify-content: space-between; box-sizing: border-box; width: 100%; min-height: 54px; padding: 9px 9px 9px 18px; border-radius: 9px; background: var(--accent); color: #07182d; font-size: 13px; font-weight: 800; text-decoration: none; }
+.app-login__action:hover { background: var(--default-button-hover-bg); color: #07182d; }
+.app-login__action strong { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 7px; background: #07182d; color: #fff; font-size: 17px; }
+
+@media (min-width: 800px) {
+  .app-login #container { display: grid; grid-template-columns: minmax(370px, 46%) minmax(430px, 54%); }
+  .app-login #header.app-login-hero { min-height: 100vh; min-height: 100dvh; padding: 38px clamp(34px, 5vw, 76px) 42px; }
+  .app-login-hero__copy { margin-top: auto; margin-bottom: auto; }
+  .app-login #header .app-login-hero__copy h1 { font-size: clamp(48px, 5vw, 76px); }
+  .app-login-hero__copy p { max-width: 390px; font-size: 14px; }
+  .app-login-hero__services { position: relative; z-index: 2; display: flex; gap: 9px; }
+  .app-login-hero__services span { padding: 7px 10px; border: 1px solid rgb(255 255 255 / 12%); border-radius: 100px; color: rgb(255 255 255 / 58%); font-size: 9px; letter-spacing: .07em; text-transform: uppercase; }
+  .app-login .main { display: grid; align-items: center; min-width: 0; margin: 0; border-radius: 0; }
+  .app-login #content { max-width: 490px; padding: 48px 42px; }
+  .app-login #content .app-login__intro h2 { font-size: 34px; }
+}
+
+@media (prefeapp-reduced-motion: reduce) { .app-login #login-form input { transition: none; } }

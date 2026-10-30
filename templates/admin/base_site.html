@@ -1,0 +1,43 @@
+{% extends "admin/base.html" %}
+{% load static i18n %}
+
+{% block title %}{{ title }} | Template Admin{% endblock %}
+
+{# Keep the admin consistent with the website's light theme. #}
+{% block dark-mode-vars %}{% endblock %}
+
+{% block responsive %}
+{{ block.super }}
+{# Bump the version when this stylesheet changes so browsers fetch the new theme. #}
+<link rel="stylesheet" href="{% static 'admin/css/custom_admin.css' %}?v=20261020-3">
+{% if has_permission and not is_popup %}
+<script src="{% static 'admin/js/dashboard_counts.js' %}" defer></script>
+{% endif %}
+{% endblock %}
+
+{% block branding %}
+<a id="site-name" class="app-admin-brand" href="{% url 'admin:index' %}">
+    <span class="app-admin-brand__mark">FT</span>
+    <span class="app-admin-brand__text">
+        <strong>Template</strong>
+        <small>Administration</small>
+    </span>
+    <span class="app-admin-brand__label">Admin</span>
+</a>
+{% endblock %}
+
+{% block welcome-msg %}
+<span class="app-admin-user">{% firstof user.get_short_name user.get_username %}</span>
+{% endblock %}
+
+{% block userlinks %}
+{% if user.has_usable_password %}
+<a href="{% url 'admin:password_change' %}">Change password</a>
+{% endif %}
+<form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+    {% csrf_token %}
+    <button type="submit">Sign out</button>
+</form>
+{% endblock %}
+
+{% block nav-global %}{% if has_permission and not is_popup %}<span hidden data-dashboard-counts-url="{% url 'admin:dashboard-counts' %}"></span>{% endif %}{% endblock %}

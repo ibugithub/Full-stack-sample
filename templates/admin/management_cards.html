@@ -1,0 +1,13 @@
+{% for model in app.models %}
+<article class="app-card app-model-card">
+    <div class="app-model-card__heading">
+        <span class="app-section-icon" aria-hidden="true">{% include 'admin/includes/dashboard_icon.html' %}</span>
+        <h3>{% if model.admin_url %}<a href="{{ model.admin_url }}">{{ model.name }}</a>{% else %}{{ model.name }}{% endif %}</h3>
+    </div>
+    <p>{% include 'admin/model_description.html' %}</p>
+    <div class="app-model-card__footer">
+        {% if model.admin_url %}<span class="app-model-card__count" data-dashboard-count="{{ model.admin_url }}" data-count-name="{{ model.name }}">&mdash;</span><a href="{{ model.admin_url }}">Open &rarr;</a>{% endif %}
+        {% if model.add_url %}<a href="{{ model.add_url }}">+ Add</a>{% endif %}
+    </div>
+</article>
+{% endfor %}

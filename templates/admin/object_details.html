@@ -1,0 +1,124 @@
+{% extends "admin/base_site.html" %}
+{% load static admin_urls %}
+
+{% block extrahead %}
+{{ block.super }}
+<script src="{% static 'admin/js/image_preview.js' %}?v=20261016-1" defer></script>
+{% if editor %}
+<script src="{% url 'admin:jsi18n' %}"></script>
+{{ editor.media }}
+<script src="{% static 'admin/js/record_editor.js' %}?v=20261024-1" defer></script>
+{% endif %}
+{% endblock %}
+{% block extrastyle %}
+{{ block.super }}
+{% if editor %}<link rel="stylesheet" href="{% static 'admin/css/forms.css' %}">{% endif %}
+{% endblock %}
+
+{% block responsive %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/admin_forms.css' %}?v=20261020-2">
+<link rel="stylesheet" href="{% static 'admin/css/admin_details.css' %}?v=20261020-3">
+{% include 'admin/includes/record_assets.html' %}
+{% endblock %}
+{% block bodyclass %}{{ block.super }} app-admin-form app-record-details app-record-page app-{{ opts.app_label }} model-{{ opts.model_name }}{% endblock %}
+{% block header %}{% include 'admin/includes/workspace_header.html' %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block content_title %}{% endblock %}
+{% block content_subtitle %}{% endblock %}
+
+{% block nav-breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="content-main" data-record-page data-editing="{{ editing|yesno:'true,false' }}">
+    <nav class="app-record-navigation" aria-label="Record navigation">
+        <a href="{% add_preserved_filters changelist_url %}"><span aria-hidden="true">&larr;</span>{{ opts.verbose_name_plural|capfirst }}</a>
+        <a class="app-record-history-link" href="{% add_preserved_filters history_url %}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2.6 7M3 5v6h6M12 7v5l3 2"/></svg>History</a>
+    </nav>
+    <header class="app-detail-heading app-record-masthead" aria-labelledby="record-title">
+        <div class="app-record-title">
+            <div class="app-record-title-line"><h1 id="record-title">{{ original }}</h1><span class="app-record-id">#{{ original.pk }}</span></div>
+            <span class="app-editor-message app-record-editing" role="status" hidden>Editing</span>
+            {% if follow_up_form %}<p class="app-detail-caption" data-record-description>Update the status and notes in Follow-up below.</p>{% endif %}
+        </div>
+        <div class="app-detail-actions">
+            {% if can_edit %}
+            <button type="button" class="app-button app-button--primary" data-record-edit aria-label="Edit {{ opts.verbose_name }}" aria-controls="app-record-editor" aria-expanded="false">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m16 3 5 5-12 12-6 1 1-6L16 3Z M13 6l5 5" /></svg>
+                Edit
+            </button>
+            <button type="submit" form="app-record-form" name="_save" class="app-button app-button--primary" data-editor-action hidden>Save changes</button>
+            <button type="button" class="app-button" data-record-cancel data-editor-action hidden>Cancel</button>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="app-detail-layout{% if images %} app-detail-layout--with-media{% endif %}">
+    {% if images %}
+    <section class="app-detail-card app-detail-media" aria-label="Images">
+        <h2>Images</h2>
+        <div class="app-detail-gallery">
+            {% for image in images %}
+            {% include 'admin/includes/image_preview.html' %}
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <div class="app-detail-content">
+    <div id="app-record-readonly">
+    {% for section in sections %}
+    <section class="app-detail-card"{% if section.follow_up %} id="record-followup"{% endif %}>
+        <h2>{{ section.title|capfirst }}</h2>
+        {% if section.follow_up %}
+        {% include follow_up_template %}
+        {% endif %}
+        <dl class="app-detail-fields">
+            {% for field in section.fields %}
+            <div class="app-detail-field{% if field.wide %} app-detail-field--wide{% endif %}">
+                <dt>{{ field.label|capfirst }}</dt>
+                <dd>{{ field.value }}</dd>
+            </div>
+            {% endfor %}
+        </dl>
+    </section>
+    {% endfor %}
+
+    {% for section in related_sections %}
+    <section class="app-detail-card">
+        <h2>{{ section.title|capfirst }}</h2>
+        {% if section.template %}
+        {% include section.template %}
+        {% else %}
+        {% for record in section.records %}
+        <article class="app-detail-related">
+            <h3>{{ record.name }}</h3>
+            {% for image in record.images %}
+            {% include 'admin/includes/image_preview.html' %}
+            {% endfor %}
+            <dl class="app-detail-fields">
+                {% for field in record.fields %}
+                <div class="app-detail-field{% if field.wide %} app-detail-field--wide{% endif %}">
+                    <dt>{{ field.label|capfirst }}</dt><dd>{{ field.value }}</dd>
+                </div>
+                {% endfor %}
+            </dl>
+        </article>
+        {% empty %}<p class="app-detail-caption">{{ section.empty_message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% if section.truncated %}<p class="app-detail-caption">Showing the first {{ section.limit }} records. Open the corresponding admin list to see all records.</p>{% endif %}
+    </section>
+    {% endfor %}
+    </div>
+
+    {% if editor %}
+    <div id="app-record-editor" hidden>
+        {% include 'admin/includes/record_editor.html' with adminform=editor.adminform inline_admin_formsets=editor.inline_admin_formsets %}
+    </div>
+    <noscript><style>#app-record-editor[hidden] { display: block !important; } [data-record-edit] { display: none; }</style><p>JavaScript is disabled. The editing form is shown below the saved details.</p></noscript>
+    {% endif %}
+    </div>
+    </div>
+</div>
+{% endblock %}

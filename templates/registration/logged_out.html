@@ -1,0 +1,38 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}Signed out | Template Admin{% endblock %}
+
+{% block responsive %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/app_login.css' %}?v=20261024-7">
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} login app-login app-logout{% endblock %}
+{% block usertools %}{% endblock %}
+{% block nav-global %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block content_title %}{% endblock %}
+{% block nav-breadcrumbs %}{% endblock %}
+
+{% block header %}
+<header id="header" class="app-login-hero">
+    {% include 'admin/includes/access_hero.html' %}
+</header>
+{% endblock %}
+
+{% block content %}
+<div id="content-main" class="app-logout__content">
+    <div class="app-logout__status" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <span class="app-login__eyebrow">Session complete</span>
+    <h2>Your workspace<br>is secured.</h2>
+    <p>You have been signed out successfully. Your admin session is no longer active on this browser.</p>
+    <div class="app-logout__closed"><span></span>Session closed</div>
+    <a class="app-login__action" href="{% url 'admin:index' %}">
+        <span>Return to sign in</span>
+        <strong aria-hidden="true">&rarr;</strong>
+    </a>
+</div>
+{% endblock %}

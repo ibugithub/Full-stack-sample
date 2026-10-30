@@ -1,0 +1,58 @@
+{% extends "admin/change_list.html" %}
+{% load admin_list admin_urls static admin_controls %}
+
+{% block responsive %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/app_theme.css' %}?v=20261024-4">
+<link rel="stylesheet" href="{% static 'admin/css/app_navigation.css' %}?v=20261024-4">
+<link rel="stylesheet" href="{% static 'admin/css/admin_lists.css' %}?v=20261024-12">
+<script src="{% static 'admin/js/app_dashboard.js' %}?v=20261024-1" defer></script>
+<script src="{% static 'admin/js/admin_lists.js' %}?v=20261024-8" defer></script>
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-admin-list{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block header %}{% include 'admin/includes/workspace_header.html' %}{% endblock %}
+
+{% block content_title %}
+<div class="app-list-heading">
+    <div>
+        <h1>{{ cl.opts.verbose_name_plural|capfirst }}</h1>
+        {% if cl.opts.model_name != 'product' %}<p>{% include "admin/list_description.html" %}</p>{% endif %}
+    </div>
+    <ul class="object-tools">
+        {% change_list_object_tools %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block filters %}
+{% if cl.has_filters %}
+{% record_filters cl %}
+{% endif %}
+{% endblock %}
+
+{% block result_list %}
+<p class="app-table-hint" hidden data-table-hint>Scroll the table sideways to see all columns &rarr;</p>
+{{ block.super }}
+{% endblock %}
+
+{% block object-tools %}{% endblock %}
+
+{% block search %}
+{% if cl.search_fields %}
+<div id="toolbar">
+    <form id="changelist-search" method="get" role="search">
+        <label class="app-visually-hidden" for="searchbar">Search {{ cl.opts.verbose_name_plural|lower }}</label>
+        <input id="searchbar" type="search" name="q" value="{{ cl.query }}" placeholder="{{ cl.search_help_text|default:'Search records' }}">
+        <input type="submit" value="Search">
+        {% for key, value in cl.params.items %}
+            {% if key != 'q' %}
+            <input type="hidden" name="{{ key }}" value="{{ value }}">
+            {% endif %}
+        {% endfor %}
+        <span class="app-result-count">{{ cl.result_count }} result{{ cl.result_count|pluralize }}</span>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

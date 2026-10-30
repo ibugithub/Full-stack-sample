@@ -1,0 +1,12 @@
+<div class="app-file-field">
+    {% if widget.is_initial %}
+    <div class="app-file-current">
+        <a href="{{ widget.value.url }}" target="_blank" rel="noopener noreferrer">View current image <span aria-hidden="true">&nearr;</span></a>
+        {% if not widget.required %}
+        <label class="app-file-remove" for="{{ widget.checkbox_id }}"><input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}{% if widget.attrs.checked %} checked{% endif %}>Remove image</label>
+        {% endif %}
+    </div>
+    {% endif %}
+    <input type="{{ widget.type }}" name="{{ widget.name }}"{% include 'django/forms/widgets/attrs.html' %}>
+    <small>{% if widget.is_initial %}Choose a file to replace the current image.{% else %}Choose an image from your device.{% endif %}</small>
+</div>

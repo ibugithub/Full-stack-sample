@@ -1,0 +1,41 @@
+{% extends 'admin/object_history.html' %}
+{% load admin_urls %}
+
+{% block responsive %}{{ block.super }}{% include 'admin/includes/record_assets.html' %}{% endblock %}
+{% block bodyclass %}{{ block.super }} app-record-page app-record-history{% endblock %}
+{% block header %}{% include 'admin/includes/workspace_header.html' %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block content_subtitle %}{% endblock %}
+{% block content_title %}
+<div class="app-form-heading">
+    <div><h1>History</h1><p>{{ object }}</p></div>
+    {% url opts|admin_urlname:'change' object.pk|admin_urlquote as detail_url %}
+    <a class="app-button" href="{% add_preserved_filters detail_url %}">&larr; Back to details</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <section class="app-history-panel" aria-label="Record history">
+        <ol class="app-history-list">
+            {% for action in action_list %}
+            <li>
+                <time datetime="{{ action.action_time|date:'c' }}">{{ action.action_time|date:'j M Y, H:i' }}</time>
+                <strong>{{ action.user.get_username }}</strong>
+                <p>{{ action.get_change_message }}</p>
+            </li>
+            {% empty %}<li>No changes have been recorded through the admin yet.</li>{% endfor %}
+        </ol>
+        {% if action_list %}
+        <div class="app-history-pagination">
+            {% if pagination_required %}{% for i in page_range %}
+                {% if i == action_list.paginator.ELLIPSIS %}<span>{{ i }}</span>
+                {% elif i == action_list.number %}<span aria-current="page">{{ i }}</span>
+                {% else %}<a href="?{{ page_var }}={{ i }}">{{ i }}</a>{% endif %}
+            {% endfor %}{% endif %}
+            <small>{{ action_list.paginator.count }} entr{{ action_list.paginator.count|pluralize:'y,ies' }}</small>
+        </div>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

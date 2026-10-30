@@ -1,0 +1,10 @@
+<details data-filter-title="{{ title }}"{% if not choices.0.selected %} open{% endif %}>
+    <summary>{{ title|capfirst }}</summary>
+    <ul>
+        {% for choice in choices %}
+        <li{% if choice.selected %} class="selected"{% endif %}>
+            <a href="{{ choice.query_string|iriencode }}"{% if choice.selected %} aria-current="true"{% endif %}>{{ choice.display }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</details>

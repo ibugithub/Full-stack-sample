@@ -1,0 +1,6 @@
+<form method="post" action="{{ request.get_full_path }}#record-followup" class="app-followup-form" novalidate>
+    {% csrf_token %}
+    {{ follow_up_form.non_field_errors }}
+    {% for field in follow_up_form.visible_fields %}<div class="form-row">{{ field.errors }}{{ field.label_tag }}{{ field }}{% if field.help_text %}<p class="help">{{ field.help_text }}</p>{% endif %}</div>{% endfor %}
+    <button type="submit" name="_save" class="app-button">Save changes</button>
+</form>

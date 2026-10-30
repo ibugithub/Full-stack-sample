@@ -1,0 +1,56 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+.diniaMateEnv/
+.venv/
+.RsTradeEnv
+.RsTradeEnvWin
+
+*.sqlite3
+media/
+backups/
+staticfiles/
+
+# Django / Python
+__pycache__/
+*.py[cod]
+
+# Python packaging
+build/
+dist/
+pip-wheel-metadata/
+
+
+
+# Next.js / Node frontend
+node_modules/
+ui/node_modules/
+.next/
+ui/.next/
+out/
+ui/out/
+build/
+ui/build/
+dist/
+ui/dist/
+.turbo/
+ui/.turbo/
+.vercel/
+ui/.vercel/
+*.tsbuildinfo
+ui/next-env.d.ts
+
+# Package manager caches
+.npm/
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+
+# Local tooling
+.codex
+.codex/
+.vscode/

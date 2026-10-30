@@ -1,0 +1,4 @@
+{% if model.object_name == 'User' %}Manage user accounts and staff access.
+{% elif model.object_name == 'Profile' %}View and update account profile records.
+{% elif model.object_name == 'Group' %}Set staff roles and access permissions.
+{% else %}View and maintain {{ model.name|lower }}.{% endif %}

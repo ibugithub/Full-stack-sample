@@ -1,0 +1,15 @@
+<figure class="app-image-preview" data-image-preview>
+    <div class="app-image-stage">
+        <div class="app-image-placeholder" data-image-placeholder>
+            <span class="app-image-initials" aria-hidden="true">{{ image.initials }}</span>
+            <strong data-image-message>{% if image.url %}Loading image...{% else %}No image yet{% endif %}</strong>
+            <span data-image-hint>{% if image.url %}Preparing the preview.{% else %}An image will appear here once uploaded.{% endif %}</span>
+        </div>
+        {% if image.url %}
+        <a class="app-image-link" href="{{ image.url }}" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1" aria-label="Enlarge {{ image.label }}">
+            <img src="{{ image.url }}" alt="{{ image.label }}" loading="lazy" data-preview-image>
+        </a>
+        {% endif %}
+    </div>
+    <figcaption>{{ image.label|capfirst }}<span data-image-enlarge hidden> &middot; Click to enlarge</span></figcaption>
+</figure>

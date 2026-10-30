@@ -1,0 +1,38 @@
+<nav id="changelist-filter" class="app-quick-filters" aria-label="Filter records">
+    <div class="app-filter-section-heading">
+        <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filters</h2>
+        {% if selected_filters %}<a href="{{ clear_all_url }}">Clear all <span aria-hidden="true">&times;</span></a>{% endif %}
+    </div>
+    {% if selected_filters %}
+    <div class="app-applied-filters" aria-label="Selected filters">
+        {% for selected in selected_filters %}
+        <a href="{{ selected.clear_url }}" aria-label="Remove {{ selected.title }}: {{ selected.display }} filter">{{ selected.title|capfirst }}: <strong>{{ selected.display }}</strong><span aria-hidden="true">&times;</span></a>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% for group in quick_filters %}
+    <div class="app-quick-filter">
+        <span class="app-quick-filter__title">{{ group.title|capfirst }}</span>
+        <div class="app-filter-pills" role="group" aria-label="{{ group.title|capfirst }}">
+            {% for choice in group.visible %}<a href="{{ choice.query_string|iriencode }}"{% if choice.selected %} class="is-selected" aria-current="true"{% endif %}>{{ choice.display }}</a>{% endfor %}
+        </div>
+        {% if group.remaining %}
+        <details class="app-filter-extra">
+            <summary>More choices</summary>
+            <div class="app-filter-pills">{% for choice in group.remaining %}<a href="{{ choice.query_string|iriencode }}"{% if choice.selected %} class="is-selected" aria-current="true"{% endif %}>{{ choice.display }}</a>{% endfor %}</div>
+        </details>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% if more_filters %}
+    <details class="app-filter-more">
+        <summary>More filters <span aria-hidden="true">+</span></summary>
+        {% for group in more_filters %}
+        <div class="app-quick-filter">
+            <span class="app-quick-filter__title">{{ group.title|capfirst }}</span>
+            <div class="app-filter-pills" role="group" aria-label="{{ group.title|capfirst }}">{% for choice in group.choices %}<a href="{{ choice.query_string|iriencode }}"{% if choice.selected %} class="is-selected" aria-current="true"{% endif %}>{{ choice.display }}</a>{% endfor %}</div>
+        </div>
+        {% endfor %}
+    </details>
+    {% endif %}
+</nav>

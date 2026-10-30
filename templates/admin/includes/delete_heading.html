@@ -1,0 +1,9 @@
+{% load i18n admin_urls %}
+<div class="app-delete-heading">
+    <div>
+        <h1>{% if bulk %}{% blocktranslate with name=opts.verbose_name_plural %}Delete selected {{ name }}{% endblocktranslate %}{% else %}{% blocktranslate with name=opts.verbose_name %}Delete {{ name }}{% endblocktranslate %}{% endif %}</h1>
+        <p>{% translate "Review the records and related items before continuing." %}</p>
+    </div>
+    {% url opts|admin_urlname:'changelist' as changelist_url %}
+    <a class="app-button" href="{% add_preserved_filters changelist_url %}">&larr; {% blocktranslate with name=opts.verbose_name_plural|capfirst %}Back to {{ name }}{% endblocktranslate %}</a>
+</div>

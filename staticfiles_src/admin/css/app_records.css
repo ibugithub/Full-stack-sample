@@ -1,0 +1,155 @@
+/* Shared details, add/edit, history and deletion screens. */
+.app-record-page #container { min-width: 0; min-height: 100vh; height: auto; }
+.app-record-page #container > .main { min-width: 0; }
+.app-record-page #content { box-sizing: border-box; width: 100%; max-width: 1440px; margin: 0 auto; padding: 18px 16px 40px; }
+.app-record-page #content-main { float: none; width: 100%; min-width: 0; }
+.app-record-page div.breadcrumbs { padding: 13px 20px; border: 0; background: transparent; color: var(--app-muted); font-size: 11px; line-height: 1.7; overflow-wrap: anywhere; }
+.app-record-page #content h1 { margin: 0; color: var(--app-text); font-size: 24px; font-weight: 800; letter-spacing: -.04em; line-height: 1.25; overflow-wrap: anywhere; }
+.app-record-page .app-button, .app-record-page .app-detail-actions .app-button { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 40px; padding: 9px 12px; border: 1px solid var(--app-border); border-radius: 10px; background: var(--app-surface); color: var(--app-text); font-size: 11px; font-weight: 700; line-height: 1.5; }
+.app-record-page .app-button:hover { border-color: #aac5ff; background: var(--app-primary-soft); }
+.app-record-page .app-button--primary, .app-record-page .app-detail-actions .app-button--primary { border-color: var(--app-accent); background: var(--app-accent); color: var(--app-on-accent); }
+.app-record-page .app-button--primary:hover { background: var(--app-accent-hover); border-color: var(--app-accent-hover); }
+.app-record-page .app-detail-back { margin: 0 0 20px; padding: 4px 0; font-size: 11px; font-weight: 650; }
+.app-record-page .app-detail-heading { display: flex; align-items: flex-start; flex-direction: column; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
+.app-record-page .app-detail-heading > div:first-child { min-width: 0; }
+.app-record-page .app-detail-eyebrow { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 0 0 9px; color: var(--app-muted); font-size: 10px; font-weight: 650; }
+.app-detail-eyebrow > span { padding: 3px 7px; border-radius: 5px; background: #dce7f9; color: #4a6b9b; font-variant-numeric: tabular-nums; }
+.app-record-page .app-detail-heading .app-detail-caption { margin-top: 8px; font-size: 11px; }
+.app-record-page .app-detail-actions { display: flex; flex-wrap: wrap; flex-shrink: 1; gap: 8px; }
+.app-detail-layout { display: grid; align-items: start; gap: 16px; }
+.app-detail-content { min-width: 0; }
+.app-record-page .app-detail-card { box-sizing: border-box; min-width: 0; margin-bottom: 16px; padding: 18px; border: 1px solid var(--app-border); border-radius: var(--app-radius); background: var(--app-surface); box-shadow: 0 3px 14px #12243b03; }
+.app-record-page .app-detail-card > h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid #edf1f7; color: #24476c; font-size: 13px; font-weight: 750; letter-spacing: -.015em; }
+.app-record-page .app-detail-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 16px; }
+.app-record-page .app-detail-field--wide { grid-column: 1 / -1; }
+.app-record-page .app-detail-field dt { margin: 0 0 5px; color: #8392a7; font-size: 10px; font-weight: 500; line-height: 1.5; }
+.app-record-page .app-detail-field dd { margin: 0; color: var(--app-text); font-size: 12px; line-height: 1.7; }
+.app-record-page .app-detail-field dd a { overflow-wrap: anywhere; }
+.app-record-page .app-detail-media { margin: 0; padding: 14px; }
+.app-record-page .app-detail-media > h2 { margin-bottom: 12px; padding-bottom: 10px; color: var(--app-muted); font-size: 11px; }
+.app-record-page .app-detail-gallery { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.app-record-page .app-detail-media .app-image-stage { height: 180px; border: 1px solid #e6edf6; border-radius: 12px; background: #f7f9fc; }
+.app-record-page .app-detail-media .app-image-stage img { width: 100%; height: 100%; object-fit: contain; }
+.app-record-page .app-detail-media .app-image-link { padding: 10px; }
+.app-record-page .app-detail-media figcaption { margin-top: 8px; color: #8191a6; font-size: 10px; line-height: 1.5; }
+.app-record-page .app-image-initials { width: 46px; height: 46px; border-radius: 13px; font-size: 18px; }
+.app-record-page .app-image-placeholder strong { font-size: 12px; }
+.app-record-page .app-image-placeholder > span:last-child { font-size: 11px; }
+.app-record-page .app-form-heading, .app-record-page .app-delete-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
+.app-record-page .app-form-heading p, .app-record-page .app-delete-heading p { margin: 7px 0 0; color: var(--app-muted); font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.app-record-page .app-form-navigation { gap: 8px; }
+.app-record-page fieldset.module.aligned { gap: 18px; margin-bottom: 16px; padding: 18px; border-color: var(--app-border); border-radius: var(--app-radius); }
+.app-record-page .aligned h2 { padding-bottom: 12px; color: #24476c; font-size: 13px; font-weight: 750; }
+.app-record-page .aligned label { color: #5c718e; font-size: 11px; font-weight: 650; }
+.app-record-page .aligned .flex-container:not(.checkbox-row):not(.form-multiline) { gap: 6px; }
+.app-record-page .aligned input[type='text'], .app-record-page .aligned input[type='email'], .app-record-page .aligned input[type='password'], .app-record-page .aligned input[type='number'], .app-record-page .aligned input[type='url'], .app-record-page .aligned select:not([multiple]), .app-record-page .aligned textarea { min-width: 0; min-height: 44px; border-color: #dfe7f1; border-radius: 10px; background: #f6f9fd; color: #23466c; font-size: 16px; }
+.app-record-page .aligned .readonly { min-width: 0; padding: 10px 12px; background: #f3f7fc; font-size: 12px; overflow-wrap: anywhere; }
+.app-record-page .aligned .help, .app-record-page .aligned p.help { margin-top: 6px; color: #8191a6; font-size: 10px; }
+.app-record-page .related-widget-wrapper { min-width: 0; }
+.app-record-page .related-widget-wrapper > select, .app-record-page .related-widget-wrapper > .select2-container { min-width: min(180px, 100%); max-width: 100%; }
+.app-record-page .inline-group { border-color: var(--app-border); border-radius: var(--app-radius); }
+.app-record-page .inline-group h2 { background: var(--app-primary-soft); color: #24476c; font-size: 13px; }
+.app-record-page .inline-group .tabular { overflow-x: auto; }
+.app-record-page .submit-row { justify-content: flex-start; gap: 8px; margin: 16px 0 0; padding: 14px; border-color: var(--app-border); border-radius: 14px; background: var(--app-surface); }
+.app-record-page .submit-row input[type='submit'], .app-record-page .submit-row a { min-height: 40px; padding: 10px 12px; border-radius: 9px; font-size: 11px; }
+.app-record-page .submit-row input.default { border-color: var(--app-accent); background: var(--app-accent); color: var(--app-on-accent); font-weight: 750; }
+.app-record-page .submit-row a.deletelink { color: #b5264a; }
+.app-record-page .app-followup-form { margin-bottom: 18px; padding-bottom: 18px; }
+.app-record-page .app-followup-control label { font-size: 11px; color: #5c718e; }
+.app-record-page .app-followup-control select, .app-record-page .app-followup-control textarea { border-radius: 10px; border-color: #dfe7f1; font-size: 16px; }
+.app-record-page .app-followup-actions { gap: 10px; margin-top: 14px; }
+.app-record-page .app-delete-card { border-color: var(--app-border); border-radius: var(--app-radius); }
+.app-record-page .app-delete-notice, .app-record-page .app-delete-target, .app-record-page .app-delete-section { padding: 18px; }
+.app-record-page .app-delete-card h2 { font-size: 14px; }
+.app-record-page .app-delete-notice p { font-size: 12px; line-height: 1.7; }
+.app-record-page .app-delete-actions { gap: 8px; padding: 14px; border-color: var(--app-border); }
+.app-record-page .app-delete-confirm { min-height: 40px; padding: 10px 12px; font-size: 11px; }
+.app-history-panel { padding: 18px; border: 1px solid var(--app-border); border-radius: var(--app-radius); background: var(--app-surface); }
+.app-history-list { margin: 0; padding: 0; list-style: none; }
+.app-history-list li { position: relative; padding: 0 0 20px 22px; list-style: none; }
+.app-history-list li::before { content: ''; position: absolute; top: 4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--app-primary); box-shadow: 0 0 0 3px var(--app-primary-soft); }
+.app-history-list li:not(:last-child)::after { content: ''; position: absolute; left: 3px; top: 17px; bottom: 3px; width: 1px; background: var(--app-border); }
+.app-history-list time { display: block; color: #8191a6; font-size: 10px; }
+.app-history-list strong { display: block; margin-top: 6px; color: #23466c; font-size: 12px; overflow-wrap: anywhere; }
+.app-history-list p { margin: 6px 0 0; color: var(--app-muted); font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
+.app-history-pagination { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding-top: 14px; border-top: 1px solid #edf1f7; }
+.app-history-pagination > a, .app-history-pagination > span { display: grid; place-items: center; min-width: 36px; min-height: 36px; border-radius: 8px; background: var(--app-soft); font-size: 12px; }
+.app-history-pagination > [aria-current] { background: var(--app-primary-soft); color: var(--app-primary); }
+.app-history-pagination > small { color: var(--app-muted); font-size: 11px; }
+.app-record-page [hidden] { display: none !important; }
+@media (min-width: 650px) {
+  .app-record-page #content { padding: 24px 32px 48px; }
+  .app-record-page div.breadcrumbs { padding: 14px 32px; }
+  .app-record-page .app-detail-heading { flex-direction: row; align-items: center; justify-content: space-between; }
+  .app-record-page .app-detail-card, .app-record-page fieldset.module.aligned { padding: 22px; }
+}
+@media (min-width: 1000px) {
+  .app-detail-layout--with-media { grid-template-columns: 280px minmax(0, 1fr); gap: 22px; }
+  .app-detail-layout--with-media > .app-detail-media { position: sticky; top: 20px; }
+  .app-record-page .app-detail-media .app-image-stage { height: 240px; }
+  .app-record-page #content h1 { font-size: 28px; }
+  .app-record-page .aligned input[type='text'], .app-record-page .aligned input[type='email'], .app-record-page .aligned input[type='password'], .app-record-page .aligned input[type='number'], .app-record-page .aligned input[type='url'], .app-record-page .aligned select:not([multiple]), .app-record-page .aligned textarea { font-size: 14px; }
+}
+@media (min-width: 1100px) {
+  .app-record-page #content { padding: 26px 48px 56px; }
+  .app-record-page div.breadcrumbs { padding: 14px max(48px, calc((100% - 1344px) / 2)); }
+}
+
+/* Keep native mobile form wrappers inside the card, not at viewport width. */
+.app-record-page .aligned .form-row, .app-record-page .aligned .form-row > div { box-sizing: border-box; width: 100%; max-width: 100%; min-width: 0; }
+.app-record-page .aligned .flex-container { box-sizing: border-box; min-width: 0; max-width: 100%; }
+.app-record-page .aligned .form-multiline > div { min-width: 0; max-width: 100%; }
+.app-record-page .aligned input, .app-record-page .aligned textarea, .app-record-page .aligned select { max-width: 100%; }
+.app-record-page .aligned input:focus-visible, .app-record-page .aligned textarea:focus-visible, .app-record-page .aligned select:focus-visible { outline: 2px solid #a5c5ff; outline-offset: 1px; }
+.app-record-page fieldset.module.aligned { overflow: visible; }
+.app-record-page .aligned > details > summary { padding: 0; color: #70839d; }
+.app-record-page .aligned > details > summary h2 { margin: 0; padding: 0; border: 0; color: #70839d; font-size: 12px; }
+.app-record-page .aligned > details > .form-row { margin-top: 16px; }
+.app-record-page .app-detail-back { margin-bottom: 14px; }
+.app-record-page .app-detail-heading { gap: 12px; margin-bottom: 18px; }
+.app-record-page .app-detail-heading .app-detail-eyebrow { margin-bottom: 7px; }
+.app-detail-eyebrow > .app-editor-message { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #d6e8df; background: #edf7f1; color: #378363; font-size: 9px; }
+.app-detail-eyebrow > .app-editor-message::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+.app-record-page .app-detail-actions { align-items: center; gap: 7px; }
+.app-file-field { display: grid; gap: 10px; box-sizing: border-box; width: 100%; min-width: 0; padding: 12px; border: 1px solid #e3eaf4; border-radius: 12px; background: #f8fafd; }
+.app-file-current { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 12px; }
+.app-file-current > a { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; font-size: 11px; font-weight: 650; }
+.app-record-page .aligned .app-file-remove { display: inline-flex; align-items: center; flex-direction: row; gap: 7px; min-height: 36px; width: auto; max-width: 100%; color: #966575; font-size: 10px; cursor: pointer; }
+.app-record-page .app-file-remove input[type='checkbox'] { flex: 0 0 auto; width: 16px; height: 16px; margin: 0; accent-color: #b5264a; }
+.app-record-page .app-file-field input[type='file'] { box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; padding: 9px; border: 1px dashed #cbd9ed; border-radius: 9px; background: white; color: #70839d; font-size: 11px; }
+.app-record-page .app-file-field input[type='file']::file-selector-button { margin-right: 8px; padding: 8px 10px; border: 0; border-radius: 6px; background: #edf4ff; color: #005bea; font-size: 11px; font-weight: 650; cursor: pointer; }
+.app-file-field > small { color: #8a99ad; font-size: 10px; line-height: 1.6; }
+.app-editor-footer { margin-top: 16px; padding: 12px; border: 1px solid var(--app-border); border-radius: 14px; background: var(--app-surface); box-shadow: 0 4px 18px #12243b04; }
+.app-editor-footer__primary { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }
+.app-record-page .app-editor-footer__primary .app-button { width: 100%; min-height: 44px; margin: 0; padding: 10px 16px; font-size: 12px; text-transform: none; }
+.app-record-page .app-editor-footer__primary .app-button:not(.app-button--primary) { min-width: 82px; }
+.app-editor-footer__danger { display: flex; justify-content: flex-end; margin-top: 10px; padding-top: 8px; border-top: 1px solid #edf1f7; }
+.app-editor-footer__danger > a { display: inline-flex; align-items: center; gap: 10px; min-height: 36px; padding: 3px 2px; color: #b5264a; font-size: 10px; font-weight: 600; }
+.app-record-page .submit-row { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: center; }
+.app-record-page .submit-row input[type='submit'], .app-record-page .submit-row a { flex: 0 1 auto; width: auto; max-width: 100%; margin: 0; text-transform: none; }
+.app-record-page .submit-row a.deletelink { flex-basis: 100%; margin: 6px 0 0; padding: 12px 0 0; border: 0; border-top: 1px solid #edf1f7; border-radius: 0; background: transparent; color: #b5264a; text-align: right; }
+@media (min-width: 768px) {
+  .app-editor-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .app-editor-footer__primary { grid-template-columns: auto auto; }
+  .app-editor-footer__danger { margin: 0; padding: 0; border: 0; }
+}
+
+/* Two clear levels: navigation, then the record title and its primary action. */
+.app-record-navigation { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: -4px 0 12px; }
+.app-record-navigation > a { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; color: #65748a; font-size: 11px; font-weight: 600; }
+.app-record-navigation > a:first-child { color: #42628a; }
+.app-record-navigation > a:first-child > span { font-size: 17px; }
+.app-record-navigation svg { width: 16px; height: 16px; }
+.app-record-page .app-record-masthead { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; margin: 0 0 20px; }
+.app-record-title { min-width: 0; }
+.app-record-title-line { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.app-record-page #content .app-record-title-line h1 { min-width: 0; margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -.04em; line-height: 1.25; }
+.app-record-id { flex-shrink: 0; padding: 3px 6px; border: 1px solid #d8e3f3; border-radius: 6px; color: #7b8da6; font-size: 10px; line-height: 1.4; font-weight: 550; font-variant-numeric: tabular-nums; }
+.app-record-editing { display: inline-flex; align-items: center; gap: 5px; margin-top: 8px; padding: 3px 7px; border-radius: 5px; background: #edf7f1; color: #378363; font-size: 9px; }
+.app-record-editing::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+.app-record-masthead:has([data-record-edit][hidden]) > .app-detail-actions { grid-column: 1 / -1; justify-content: flex-end; }
+.app-record-page .app-record-masthead [data-record-edit] { min-height: 38px; padding: 8px 11px; font-size: 11px; }
+@media (min-width: 1000px) {
+  .app-record-page #content .app-record-title-line h1 { font-size: 28px; }
+  .app-record-masthead:has([data-record-edit][hidden]) > .app-detail-actions { grid-column: auto; }
+}

@@ -1,0 +1,287 @@
+/* Shared add/edit forms. Django owns validation, widgets and submission. */
+.app-admin-form #content {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 40px;
+}
+.app-form-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+.app-form-heading h1 {
+  margin: 0 0 8px;
+}
+.app-form-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.app-form-heading p {
+  margin: 0;
+  color: var(--body-quiet-color);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.app-admin-form fieldset.module.aligned {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  overflow: visible;
+  margin: 0 0 24px;
+  padding: 24px;
+  border-radius: 14px;
+  background: white;
+}
+.app-admin-form .aligned > h2,
+.app-admin-form .aligned > .description,
+.app-admin-form .aligned > details {
+  grid-column: 1 / -1;
+}
+.app-admin-form .aligned h2 {
+  margin: 0;
+  padding: 0 0 18px;
+  border-bottom: 1px solid var(--hairline-color);
+  background: transparent;
+  font-size: 16px;
+  font-weight: 700;
+}
+.app-admin-form .aligned .form-row {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+.app-admin-form .aligned .form-row:has(textarea),
+.app-admin-form .aligned .form-row:has(.selector),
+.app-admin-form .aligned .form-row:has(.readonly.password) {
+  grid-column: 1 / -1;
+}
+.app-admin-form .aligned .flex-container:not(.checkbox-row):not(.form-multiline) {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+.app-admin-form .aligned .form-multiline {
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.app-admin-form .aligned label {
+  float: none;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  color: var(--body-medium-color);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.app-admin-form .aligned .required label,
+.app-admin-form .aligned label.required {
+  color: var(--body-fg);
+}
+.app-admin-form .aligned input[type='text'],
+.app-admin-form .aligned input[type='email'],
+.app-admin-form .aligned input[type='password'],
+.app-admin-form .aligned input[type='number'],
+.app-admin-form .aligned input[type='url'],
+.app-admin-form .aligned textarea,
+.app-admin-form .aligned select:not([multiple]) {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: #f9fafb;
+  color: var(--body-fg);
+  font-size: 14px;
+}
+.app-admin-form .aligned textarea {
+  min-height: 140px;
+  height: 140px;
+  resize: vertical;
+}
+.app-admin-form .aligned .checkbox-row {
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+.app-admin-form input[type='checkbox'] {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  accent-color: var(--primary);
+}
+.app-admin-form .aligned .help,
+.app-admin-form .aligned p.help,
+.app-admin-form .aligned .errorlist {
+  margin: 8px 0 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.app-admin-form .aligned .help > div,
+.app-admin-form .aligned .help ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+.app-admin-form .aligned .readonly {
+  margin: 0;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--body-bg);
+  line-height: 1.6;
+}
+.app-admin-form input[type='file'] {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  border: 1px dashed #b8c6da;
+  border-radius: 8px;
+  background: #f9fafb;
+  font-size: 12px;
+}
+.app-admin-form input[type='file']::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--selected-bg);
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+.app-admin-form .related-widget-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  float: none;
+}
+.app-admin-form .related-widget-wrapper > select,
+.app-admin-form .related-widget-wrapper > .select2-container {
+  flex: 1;
+  min-width: 180px;
+  width: auto;
+}
+.app-admin-form .select2-container .select2-selection--single {
+  min-height: 44px;
+  padding: 6px 4px;
+  border-color: var(--border-color);
+  border-radius: 8px;
+  background: #f9fafb;
+}
+.app-admin-form .select2-container .select2-selection__arrow {
+  top: 9px;
+}
+.app-admin-form .aligned .datetime input {
+  width: 150px;
+}
+.app-admin-form .inline-group {
+  overflow: hidden;
+  margin: 0 0 24px;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: white;
+}
+.app-admin-form .inline-group .tabular {
+  overflow-x: auto;
+}
+.app-admin-form .inline-group h2 {
+  margin: 0;
+  padding: 18px 20px;
+  background: var(--selected-bg);
+  font-size: 15px;
+}
+.app-admin-form .inline-group .module {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+.app-admin-form .inline-group table {
+  width: 100%;
+}
+.app-admin-form .inline-group tr,
+.app-admin-form .inline-group td,
+.app-admin-form .inline-group th {
+  background: white;
+}
+.app-admin-form .inline-group input[type='text'] {
+  min-width: 160px;
+}
+.app-admin-form .submit-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: white;
+}
+.app-admin-form .submit-row input[type='submit'],
+.app-admin-form .submit-row a {
+  min-height: 44px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: white;
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+}
+.app-admin-form .submit-row input.default {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--body-fg);
+}
+.app-admin-form .submit-row input.default:hover {
+  background: var(--default-button-hover-bg);
+}
+.app-admin-form .submit-row a.deletelink {
+  margin-left: auto;
+  color: var(--delete-button-bg);
+}
+.app-admin-form .errornote,
+.app-admin-form .errorlist {
+  border-radius: 8px;
+}
+.app-admin-form #content-main > .object-tools {
+  display: flex;
+  justify-content: flex-end;
+  float: none;
+  margin: 0 0 16px;
+}
+/* Keep the chosen-permissions heading readable over Django's blue header. */
+.app-admin-form .selector .selector-chosen-title,
+.app-admin-form .selector .selector-chosen-title label,
+.app-admin-form .selector .selector-chosen-title .helptext {
+  color: #fff;
+}
+@media (max-width: 767px) {
+  .app-admin-form #content {
+    padding: 24px 20px;
+  }
+  .app-admin-form fieldset.module.aligned {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+  .app-admin-form .aligned .form-row:has(.selector) {
+    overflow-x: auto;
+  }
+  .app-admin-form .submit-row input[type='submit'] {
+    flex: 1 1 auto;
+  }
+}

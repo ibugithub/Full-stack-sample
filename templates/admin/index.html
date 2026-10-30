@@ -1,0 +1,70 @@
+{% extends "admin/base_site.html" %}
+{% load i18n log static %}
+
+{% block responsive %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/app_theme.css' %}?v=20261024-4">
+<link rel="stylesheet" href="{% static 'admin/css/app_navigation.css' %}?v=20261024-4">
+<link rel="stylesheet" href="{% static 'admin/css/app_dashboard.css' %}?v=20261024-11">
+<script src="{% static 'admin/js/app_dashboard.js' %}?v=20261024-1" defer></script>
+{% endblock %}
+{% block coltype %}colM{% endblock %}
+{% block bodyclass %}{{ block.super }} dashboard app-dashboard{% endblock %}
+{% block nav-breadcrumbs %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block content_title %}{% endblock %}
+{% block sidebar %}{% endblock %}
+
+{% block header %}
+{% include 'admin/includes/workspace_header.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="app-workspace">
+    <section class="app-workspace-intro" aria-labelledby="dashboard-title">
+        <div class="app-workspace-intro__top">{% if app_label %}<a class="app-workspace-back" href="{% url 'admin:index' %}">&larr; Dashboard</a>{% endif %}<time datetime="{% now 'Y-m-d' %}">{% now 'd M Y' %}</time></div>
+        <h1 id="dashboard-title">{% if app_label %}{{ app_list.0.name }}{% else %}Ready for<br><span>what’s next.</span>{% endif %}</h1>
+        <div class="app-workspace-intro__bottom"><p>{% if app_label %}Manage your {{ app_list.0.name|lower }} in one place.{% else %}Manage your workspace.<br>Keep things moving.{% endif %}</p>{% if site_url %}<a href="{{ site_url }}">Website <span aria-hidden="true">&nearr;</span></a>{% endif %}</div>
+    </section>
+    <div class="app-workspace-body">
+        <section class="app-directory" aria-label="Management features">
+            <div class="app-directory-search" hidden data-directory-search>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+                <input type="search" placeholder="Find a feature..." aria-label="Find a management feature" data-directory-input>
+            </div>
+            <div class="app-directory-list">
+                {% for app in app_list %}{% for model in app.models %}
+                <article class="app-feature" data-directory-feature data-feature-name="{{ model.name }}">
+                    <div class="app-feature__icon" aria-hidden="true">{% include 'admin/includes/dashboard_icon.html' %}</div>
+                    <div class="app-feature__body">
+                        <h2>{% if model.admin_url %}<a href="{{ model.admin_url }}">{{ model.name }}</a>{% else %}{{ model.name }}{% endif %}</h2>
+                        <p>{% include 'admin/model_description.html' %}</p>
+                        <div class="app-feature__footer">
+                            {% if model.admin_url %}<span class="app-feature__count" data-dashboard-count="{{ model.admin_url }}" data-count-name="{{ model.name }}" aria-label="Loading {{ model.name|lower }} count">&mdash;</span>{% endif %}
+                            {% if model.add_url %}<a class="app-feature__add" href="{{ model.add_url }}" aria-label="Add {{ model.name }}">+ Add</a>{% endif %}
+                        </div>
+                    </div>
+                    {% if model.admin_url %}<a class="app-feature__open" href="{{ model.admin_url }}" aria-label="{% if model.view_only %}View{% else %}Manage{% endif %} {{ model.name }}">&nearr;</a>{% endif %}
+                </article>
+                {% endfor %}{% empty %}<p class="app-directory-empty">No management features are available for your account.</p>{% endfor %}
+            </div>
+            <p class="app-directory-empty" data-directory-empty hidden role="status">No matching features. Try another name.</p>
+        </section>
+        {% if not app_label %}
+        <section class="app-workspace-activity" aria-labelledby="activity-title">
+            <div class="app-workspace-activity__heading"><span aria-hidden="true">↳</span><h2 id="activity-title">Recent activity</h2></div>
+            {% get_admin_log 6 as admin_log for_user user %}
+            <ol>
+                {% for entry in admin_log %}
+                <li>
+                    <span class="app-workspace-activity__type">{% if entry.is_addition %}Added{% elif entry.is_change %}Updated{% else %}Deleted{% endif %}{% if entry.content_type %} / {{ entry.content_type.name }}{% endif %}</span>
+                    {% if entry.is_deletion or not entry.get_admin_url %}<strong>{{ entry.object_repr }}</strong>{% else %}<a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>{% endif %}
+                    <time datetime="{{ entry.action_time|date:'c' }}">{{ entry.action_time|date:'j M Y, H:i' }}</time>
+                </li>
+                {% empty %}<li>No recent changes yet.</li>{% endfor %}
+            </ol>
+        </section>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

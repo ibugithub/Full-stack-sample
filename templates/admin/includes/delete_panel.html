@@ -1,0 +1,64 @@
+{% load i18n l10n admin_urls %}
+<div id="content-main">
+    <section class="app-delete-card" aria-labelledby="delete-review-title">
+        <div class="app-delete-notice">
+            <span class="app-delete-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7" /></svg>
+            </span>
+            <div>
+                <h2 id="delete-review-title">{% if perms_lacking or protected %}{% translate "These records cannot be deleted" %}{% else %}{% translate "Confirm deletion" %}{% endif %}</h2>
+                <p>{% if perms_lacking %}{% translate "You do not have permission to delete some related records. Nothing has been deleted." %}{% elif protected %}{% translate "Protected related records prevent this deletion. Nothing has been deleted." %}{% else %}{% translate "This action cannot be undone. The records listed below, including their related items, will be permanently deleted." %}{% endif %}</p>
+            </div>
+        </div>
+
+        {% if perms_lacking %}
+        <div class="app-delete-section">
+            <h2>{% translate "Missing delete permissions" %}</h2>
+            <ul id="deleted-objects" class="app-delete-tree">{{ perms_lacking|unordered_list }}</ul>
+        </div>
+        {% elif protected %}
+        <div class="app-delete-section">
+            <h2>{% translate "Protected records" %}</h2>
+            <ul id="deleted-objects" class="app-delete-tree">{{ protected|unordered_list }}</ul>
+        </div>
+        {% else %}
+        {% if not bulk %}<div class="app-delete-target"><span>{% translate "Selected record" %}</span><strong>{{ object }}</strong></div>{% endif %}
+        <div class="app-delete-section">
+            <h2>{% translate "Deletion summary" %}</h2>
+            <dl class="app-delete-summary">
+                {% for model_name, object_count in model_count %}
+                <div><dt>{{ model_name|capfirst }}</dt><dd>{{ object_count }}</dd></div>
+                {% endfor %}
+            </dl>
+        </div>
+        <div class="app-delete-section">
+            <h2>{% translate "Records and related items" %}</h2>
+            <div class="app-delete-records" tabindex="0" role="region" aria-label="{% translate 'Records to be deleted' %}">
+                {% if bulk %}
+                    {% for deletable_object in deletable_objects %}<ul class="app-delete-tree">{{ deletable_object|unordered_list }}</ul>{% endfor %}
+                {% else %}
+                    <ul id="deleted-objects" class="app-delete-tree">{{ deleted_objects|unordered_list }}</ul>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </section>
+
+    {% url opts|admin_urlname:'changelist' as changelist_url %}
+    {% if perms_lacking or protected %}
+    <div class="app-delete-actions"><a class="app-button cancel-link" href="{% add_preserved_filters changelist_url %}">{% translate "Go back" %}</a></div>
+    {% else %}
+    <form method="post" class="app-delete-actions">
+        {% csrf_token %}
+        {% if bulk %}
+            {% for obj in queryset %}<input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk|unlocalize }}">{% endfor %}
+            <input type="hidden" name="action" value="delete_selected">
+        {% endif %}
+        <input type="hidden" name="post" value="yes">
+        {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1">{% endif %}
+        {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}">{% endif %}
+        <a class="app-button cancel-link" href="{% add_preserved_filters changelist_url %}">{% translate "Cancel" %}</a>
+        <button type="submit" class="app-delete-confirm">{% if bulk %}{% translate "Delete selected records" %}{% else %}{% translate "Delete record" %}{% endif %}</button>
+    </form>
+    {% endif %}
+</div>

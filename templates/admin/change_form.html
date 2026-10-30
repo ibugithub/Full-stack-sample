@@ -1,0 +1,33 @@
+{% extends "admin/change_form.html" %}
+{% load admin_urls static %}
+
+{% block responsive %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/admin_forms.css' %}?v=20261020-2">
+{% include 'admin/includes/record_assets.html' %}
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-admin-form app-record-page{% endblock %}
+{% block header %}{% include 'admin/includes/workspace_header.html' %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block content_subtitle %}{% endblock %}
+
+{% block content_title %}
+<div class="app-form-heading">
+    <div>
+        <h1>{{ title }}</h1>
+        <p>{% if add %}Enter the details below to create a new {{ opts.verbose_name|lower }}.{% elif not has_change_permission %}View this {{ opts.verbose_name|lower }} and its saved details.{% else %}Review and update this {{ opts.verbose_name|lower }}.{% endif %}</p>
+    </div>
+    {% if has_view_permission and not is_popup %}
+    <div class="app-form-navigation">
+    {% if not add %}
+    <a class="app-button" href="{% add_preserved_filters request.path %}">View details</a>
+    {% endif %}
+    {% url opts|admin_urlname:'changelist' as changelist_url %}
+    <a class="app-button" href="{% add_preserved_filters changelist_url %}">
+        <span aria-hidden="true">&larr;</span> Back to {{ opts.verbose_name_plural|capfirst }}
+    </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

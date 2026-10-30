@@ -1,0 +1,28 @@
+/* Shared operations header: exactly the same on the dashboard and record lists. */
+.app-admin-list #container { min-width: 0; min-height: 100vh; height: auto; }
+.app-admin-list #container > .main { min-width: 0; }
+#app-workspace-header { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 16px; box-sizing: border-box; width: 100%; min-height: 82px; padding: 18px 20px; background: var(--app-nav); color: white; }
+.app-workspace-brand:link, .app-workspace-brand:visited { display: flex; align-items: center; gap: 10px; color: white; text-decoration: none; }
+.app-workspace-brand > span { display: grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; border-radius: 13px; background: #ffd419; color: #005bea; font-size: 16px; font-weight: 850; }
+.app-workspace-brand strong { font-size: 18px; font-weight: 800; line-height: 1.1; }
+.app-workspace-brand small { display: block; margin-top: 5px; color: var(--app-on-nav-muted); font-size: 9px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+.app-workspace-tools { display: flex; align-items: center; gap: 10px; }
+.app-account-menu { position: relative; }
+.app-account-menu summary { display: grid; place-items: center; box-sizing: border-box; width: 44px; height: 44px; border: 1px solid var(--app-nav-border); border-radius: 14px; background: var(--app-nav-control); cursor: pointer; list-style: none; }
+.app-account-menu summary::-webkit-details-marker { display: none; }
+.app-account-menu summary svg { width: 20px; height: 20px; }
+.app-account-menu[open] summary { border-color: var(--app-accent); }
+.app-account-menu__panel { position: absolute; z-index: 1100; top: calc(100% + 12px); right: 0; box-sizing: border-box; width: min(280px, calc(100vw - 40px)); padding: 20px; border: 1px solid var(--app-border); border-radius: var(--app-radius); background: var(--app-surface); color: var(--app-text); box-shadow: 0 16px 44px #43284129; }
+.app-account-menu__panel > small { display: block; color: var(--app-muted); }
+.app-account-menu__panel > strong { display: block; margin: 6px 0 16px; overflow-wrap: anywhere; font-size: 13px; }
+.app-account-menu__panel > a, :is(.app-dashboard, .app-admin-list, .app-record-page) .app-account-menu #logout-form button { display: flex; align-items: center; box-sizing: border-box; width: 100%; min-height: 44px; padding: 10px 0; border: 0; border-top: 1px solid var(--app-border); border-radius: 0; background: transparent; color: var(--app-text); font-size: 13px; text-align: left; }
+#app-workspace-header .app-notifications__bell { width: 44px; height: 44px; border-color: var(--app-nav-border); border-radius: 14px; background: var(--app-nav-control); color: white; }
+#app-workspace-header .app-notifications__bell:hover, #app-workspace-header .app-notifications__bell[aria-expanded='true'] { border-color: var(--app-accent); background: #243850; color: var(--app-accent); }
+#app-workspace-header .app-notifications__panel { position: fixed; top: 82px; right: 12px; left: 12px; width: auto; max-height: calc(100svh - 100px); }
+#app-workspace-header .app-notifications__list a { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; color: var(--app-text); overflow-wrap: anywhere; }
+#app-workspace-header .app-notifications__heading h2 { margin: 0; font-size: 17px; }
+@media (min-width: 650px) { #app-workspace-header { padding: 20px 32px; } }
+@media (min-width: 1100px) {
+  #app-workspace-header { padding: 20px max(48px, calc((100% - 1344px) / 2)); }
+  #app-workspace-header .app-notifications__panel { position: absolute; top: calc(100% + 12px); right: 0; left: auto; width: 400px; }
+}
