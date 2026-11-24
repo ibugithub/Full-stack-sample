@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: "{{PROJECT_NAME}} API"
+  version: 0.1.0-draft
+  description: |
+    Design-first API contract (see api_design.md for conventions).
+    Replace the example path and schemas below with the real ones.
+servers:
+  - url: /api/v1
+security:
+  - bearerAuth: []
+
+paths:
+  /health:
+    get:
+      summary: Liveness and database check
+      security: []
+      responses:
+        '200':
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: {type: string, enum: [ok]}
+  /items:
+    get:
+      summary: Example list endpoint with cursor pagination (replace)
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A page of items
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [results, next_cursor]
+                properties:
+                  results:
+                    type: array
+                    items: {$ref: '#/components/schemas/Item'}
+                  next_cursor: {type: [string, 'null']}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    Cursor:
+      name: cursor
+      in: query
+      schema: {type: string}
+    Limit:
+      name: limit
+      in: query
+      schema: {type: integer, minimum: 1, maximum: 50, default: 50}
+
+  responses:
+    Unauthorized:
+      description: Missing or invalid credentials
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    ValidationError:
+      description: Validation failed
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    NotFound:
+      description: Not found, or owned by another user
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+
+  schemas:
+    Error:
+      type: object
+      required: [detail, code]
+      properties:
+        detail: {type: string}
+        code: {type: string}
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items: {type: string}
+        retry_after: {type: integer}
+        request_id: {type: string}
+    Item:
+      type: object
+      required: [id, version]
+      properties:
+        id: {type: integer}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+        version: {type: integer}
